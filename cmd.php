@@ -121,6 +121,39 @@ function clear()
 
 
 
+//Prompt the user for something
+function prompt($question, $validation = null, $defaultValue = null)
+{
+	while(true)
+	{
+		echo $question .' ';
+		$usrInp = trim(fgets(STDIN));
+
+		//Validation
+		if(isset($validation) AND isset($defaultValue))
+		{
+			if(assert($usrInp .' '. $validation) !== true) { //Validation failed, return default value
+				$usrInp = $defaultValue;
+			}
+
+			break 1;
+		}
+		elseif(isset($validation))
+		{
+			if(assert($usrInp .' '. $validation) === true) { //Ask untill the validation pass
+				e();
+				break 1;
+			}
+		}
+		else {
+			break 1; //Don't even care about what the user typed
+		}
+	}
+
+	return $usrInp;
+}
+
+
 /**
  * Debug something
  *
