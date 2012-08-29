@@ -10,7 +10,8 @@
  *       "one
  *		  two
  *		 "
- * Note the `and` syntax. I'm thinking of replace it with OR syntax, Pros: Shorter; cons: fuckeduplogic.
+ * Note the `and` syntax.
+ * Do you prefer `or` syntax? Change `defaultReturnValue` to false! Pros: Shorter; cons: fuckeduplogic. :D
  *
  * @author Sony? aka Sawny @4morefun.net
  * @todo 1) Create subpackegs
@@ -27,7 +28,7 @@
 //--------------------------------------------
 define("nl", PHP_EOL);
 define("escChars", true); //If windows: set to false if you don't have ANSICON.
- 
+define("defaultReturnValue", true); //true = AND syntax, false = OR syntax. `e("Hi") AND e("wtf")` VS `e("Hi") OR e("WTF logics?!")`.
  
 
 // Random shite
@@ -64,7 +65,7 @@ function e() {
 	    echo $arg . nl;
 	}
     
-	return true; //Allow the "AND" syntax. @example `e('Hi') AND e('this syntax') AND e('is fuckedup');`
+	return defaultReturnValue; //Allow the "AND" or the "OR" syntax. @example `e('Hi') AND e('this syntax') AND e('is fuckedup');`
 }
 
 
@@ -104,7 +105,7 @@ function getArg($num, $errorMess = "", $condition = "")
 function wait($ms = 100) {
     usleep($ms * 1000);
 	
-	return true; //Allows fucked up AND syntax
+	return defaultReturnValue; //Allows fucked up AND syntax
 }
 
 function w8($ms = 100) { wait($ms); }
@@ -122,6 +123,8 @@ function clear()
 			echo nl;
 		}
 	}
+
+	return defaultReturnValue;
 }
 
 
@@ -167,6 +170,8 @@ function nl($i = 1) {
 
 		$i--;
 	}
+
+	return defaultReturnValue;
 }
 
 
@@ -211,6 +216,7 @@ function debug($mess, $var = null)
 		echo nl;
 	}
 	
+	return defaultReturnValue;
 }
 
 ?>
