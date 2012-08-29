@@ -3,14 +3,14 @@
 /**
  * A bunch function to make CMD scripting easier.
  *
- * This is for PHP runed in the terminal.
- * One goal for these function is to allow the user to write short code.
- * Another goal is to allow the use to write fucked up'ed code.
+ * This is for PHP runed in the terminal (CLI).
+ * One goal for these function is to allow the user to write shorter code.
+ * Another goal is to allow the use to write fucked up'ed code like:
  *     @example: e('one') and e('two') and e(); ->
  *       "one
  *		  two
  *		 "
- * Note the and syntax. I'm thinking of replace it with OR syntax, Pros: Shorter; cons: fuckeduplogic.
+ * Note the `and` syntax. I'm thinking of replace it with OR syntax, Pros: Shorter; cons: fuckeduplogic.
  *
  * @author Sony? aka Sawny @4morefun.net
  * @todo 1) Create subpackegs
@@ -21,6 +21,7 @@
  *				 SQLite::save(array('column' => 'value'))`
  */
  
+
  
 // Define things
 //--------------------------------------------
@@ -28,6 +29,7 @@ define("nl", PHP_EOL);
 define("escChars", true); //If windows: set to false if you don't have ANSICON.
  
  
+
 // Random shite
 //--------------------------------------------
 assert_options(ASSERT_ACTIVE,     1);
@@ -38,7 +40,10 @@ assert_options(ASSERT_CALLBACK,   'assertCallback');
 function assertCallback() {
     return false;
 }
- 
+
+
+
+//--------------------------------------------
 // Functions
 //--------------------------------------------
  
