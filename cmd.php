@@ -154,6 +154,17 @@ function prompt($question, $validation = null, $defaultValue = null)
 }
 
 
+
+//Print new lines
+function nl($i = 1) {
+	while($i > 0) {
+		echo nl;
+
+		$i--;
+	}
+}
+
+
 /**
  * Debug something
  *
