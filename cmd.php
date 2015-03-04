@@ -5,6 +5,8 @@
  *
  * This is for PHP runed in the terminal (CLI).
  * One goal for these function is to allow the user to write shorter code.
+ * That's often what you want for CLI scripts, you write them one time and noone ever touch them afterwards.
+ * Then it's ideal to write the code as fast as possible and skip the readabilite.
  * Another goal is to allow the use to write fucked up'ed code like:
  *     @example: e('one') and e('two') and e(); ->
  *       "one
@@ -29,7 +31,9 @@
 define("nl", PHP_EOL);
 define("escChars", true); //If windows: set to false if you don't have ANSICON.
 define("defaultReturnValue", true); //true = AND syntax, false = OR syntax. `e("Hi") AND e("wtf")` VS `e("Hi") OR e("WTF logics?!")`.
- 
+
+$timer['hasStared'] = false;
+
 
 // Random shite
 //--------------------------------------------
@@ -173,6 +177,29 @@ function nl($i = 1) {
 
 	return defaultReturnValue;
 }
+
+
+
+//Timer
+function timer($id = 0)
+{
+	global $timer;
+
+	if(!isset($timer[$id]['hasStared']) OR $timer[$id]['hasStared'])
+	{
+		$timer[$id]['endTime']   = microtime(true);
+		$timer[$id]['hasStared'] = false;
+
+		return $timer[$id]['endTime'] - $timer[$id]['startTime'];
+	}
+	else
+	{
+		$timer[$id]['startTime'] = microtime(true);
+		$timer[$id]['hasStared'] = true;
+	}
+
+}
+
 
 
 /**
